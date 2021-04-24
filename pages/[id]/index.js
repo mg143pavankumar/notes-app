@@ -22,7 +22,7 @@ const Note = ({ data }) => {
     const noteId = router.query.id;
 
     try {
-      const deleted = await fetch(`${process.env.SERVER_URL}/${noteId}`, {
+      const deleted = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
         method: "DELETE",
       });
 
@@ -60,7 +60,7 @@ const Note = ({ data }) => {
 };
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`${process.env.SERVER_URL}/${id}`);
+  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
   const { data } = await res.json();
 
   return {
