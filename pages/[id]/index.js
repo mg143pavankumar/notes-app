@@ -22,12 +22,9 @@ const Note = ({ data }) => {
     const noteId = router.query.id;
 
     try {
-      const deleted = await fetch(
-        `https://notes-app-kohl.vercel.app/api/notes/${noteId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const deleted = await fetch(`${process.env.SERVER_URL}/${noteId}`, {
+        method: "DELETE",
+      });
 
       router.replace("/");
     } catch (error) {
@@ -63,7 +60,7 @@ const Note = ({ data }) => {
 };
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`https://notes-app-kohl.vercel.app/api/notes/${id}`);
+  const res = await fetch(`${process.env.SERVER_URL}/${id}`);
   const { data } = await res.json();
 
   return {

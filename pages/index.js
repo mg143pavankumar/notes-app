@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
 import Result from "../components/Result";
 
 export default function Home({ result }) {
@@ -16,7 +15,7 @@ export default function Home({ result }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("https://notes-app-kohl.vercel.app/api/notes");
+  const res = await fetch(`${process.env.SERVER_URL}`);
   const result = await res.json();
 
   return {
