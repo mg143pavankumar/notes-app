@@ -22,9 +22,12 @@ const Note = ({ data }) => {
     const noteId = router.query.id;
 
     try {
-      const deleted = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
-        method: "DELETE",
-      });
+      const deleted = await fetch(
+        `https://notes-app-kohl.vercel.app/api/notes/${noteId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       router.replace("/");
     } catch (error) {
