@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import Result from "../components/Result";
 
-export default function Home() {
+export default function Home({ result }) {
   return (
     <div>
       <Head>
@@ -9,7 +10,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <Result data={result.data} />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch("https://notes-app-kohl.vercel.app/api/notes");
+  const result = await res.json();
+
+  return {
+    props: {
+      result,
+    },
+  };
 }
