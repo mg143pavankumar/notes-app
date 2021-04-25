@@ -4,6 +4,8 @@ import { Confirm, Button, Loader } from "semantic-ui-react";
 import Head from "next/head";
 
 const Note = ({ data }) => {
+  
+  const SERVER_URL = "https://notes-app-three-kappa.vercel.app";
   const [confirm, setConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
@@ -22,7 +24,7 @@ const Note = ({ data }) => {
     const noteId = router.query.id;
 
     try {
-      const deleted = await fetch(`${process.env.SERVER_URL}/api/notes/${noteId}`, {
+      const deleted = await fetch(`${SERVER_URL}/api/notes/${noteId}`, {
         method: "DELETE",
       });
 
@@ -60,7 +62,7 @@ const Note = ({ data }) => {
 };
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`${process.env.SERVER_URL}/api/notes/${id}`);
+  const res = await fetch(`${SERVER_URL}/api/notes/${id}`);
   const { data } = await res.json();
 
   return {
