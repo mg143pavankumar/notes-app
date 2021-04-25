@@ -22,14 +22,17 @@ const NewNote = () => {
 
   const createNote = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/notes", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        "https://notes-app-three-kappa.vercel.app/api/notes",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
       router.replace("/");
     } catch (err) {
@@ -90,7 +93,7 @@ const NewNote = () => {
             />
 
             <Form.TextArea
-              fluid
+              fluid="true"
               error={
                 errors.description
                   ? { content: "please enter a desciption", pointing: "below" }
