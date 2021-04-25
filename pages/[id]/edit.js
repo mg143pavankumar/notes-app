@@ -25,7 +25,7 @@ const EditNote = ({ data }) => {
 
   const updateNote = async () => {
     try {
-      const res = await fetch(`${SERVER_URL}/api/notes/${router.query.id}`, {
+      const res = await fetch(`${process.env.SERVER_URL}/api/notes/${router.query.id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
@@ -115,7 +115,7 @@ const EditNote = ({ data }) => {
 };
 
 export async function getServerSideProps({ query: { id } }) {
-  const res = await fetch(`${SERVER_URL}/api/notes/${id}`);
+  const res = await fetch(`${process.env.SERVER_URL}/api/notes/${id}`);
   const { data } = await res.json();
 
   return {
